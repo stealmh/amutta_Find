@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		162135AE291BC59800B0454A /* NetworkGetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162135AD291BC59800B0454A /* NetworkGetData.swift */; };
+		16015E46291D21A400152F51 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16015E45291D21A400152F51 /* CollectionViewCell.swift */; };
+		16015E48291D21EC00152F51 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16015E47291D21EC00152F51 /* SearchResultViewController.swift */; };
+		16015E4A291D221A00152F51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16015E49291D221A00152F51 /* Constants.swift */; };
+		162135AE291BC59800B0454A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162135AD291BC59800B0454A /* NetworkManager.swift */; };
 		1632932E291C9D1200B87743 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632932C291C9D1200B87743 /* MusicCell.swift */; };
-		1632932F291C9D1200B87743 /* MusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1632932D291C9D1200B87743 /* MusicCell.xib */; };
 		16AE0551291AA9C4003524D6 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163CFCA1291AA684007AC2C9 /* TMapSDK.framework */; };
 		16AE0552291AA9C4003524D6 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 163CFCA1291AA684007AC2C9 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16DD39A5291AA45000196687 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DD39A4291AA45000196687 /* AppDelegate.swift */; };
@@ -19,6 +21,7 @@
 		16DD39AE291AA45100196687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16DD39AD291AA45100196687 /* Assets.xcassets */; };
 		16DD39B1291AA45100196687 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16DD39AF291AA45100196687 /* LaunchScreen.storyboard */; };
 		16DD39B9291AA4A600196687 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DD39B8291AA4A600196687 /* Data.swift */; };
+		16F811E1291D243A00ABA4D6 /* MusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F811E0291D243A00ABA4D6 /* MusicCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,9 +39,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		162135AD291BC59800B0454A /* NetworkGetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGetData.swift; sourceTree = "<group>"; };
+		16015E45291D21A400152F51 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		16015E47291D21EC00152F51 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		16015E49291D221A00152F51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		162135AD291BC59800B0454A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1632932C291C9D1200B87743 /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
-		1632932D291C9D1200B87743 /* MusicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicCell.xib; sourceTree = "<group>"; };
 		163CFCA1291AA684007AC2C9 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		16DD39A1291AA45000196687 /* amutta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amutta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DD39A4291AA45000196687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		16DD39B0291AA45100196687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16DD39B2291AA45100196687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16DD39B8291AA4A600196687 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		16F811E0291D243A00ABA4D6 /* MusicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +69,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16015E4B291D23CD00152F51 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16DD39A8291AA45000196687 /* ViewController.swift */,
+				16015E47291D21EC00152F51 /* SearchResultViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		16015E4C291D23D000152F51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16DD39AA291AA45000196687 /* Main.storyboard */,
+				16F811E0291D243A00ABA4D6 /* MusicCell.xib */,
+				1632932C291C9D1200B87743 /* MusicCell.swift */,
+				16015E45291D21A400152F51 /* CollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		16015E4D291D23D200152F51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16015E49291D221A00152F51 /* Constants.swift */,
+				16DD39B8291AA4A600196687 /* Data.swift */,
+				162135AD291BC59800B0454A /* NetworkManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		16DD3998291AA45000196687 = {
 			isa = PBXGroup;
 			children = (
-				162135AD291BC59800B0454A /* NetworkGetData.swift */,
+				16DD39A6291AA45000196687 /* SceneDelegate.swift */,
+				16DD39A4291AA45000196687 /* AppDelegate.swift */,
 				16DD39A3291AA45000196687 /* amutta */,
 				16DD39A2291AA45000196687 /* Products */,
 			);
@@ -83,17 +120,13 @@
 		16DD39A3291AA45000196687 /* amutta */ = {
 			isa = PBXGroup;
 			children = (
-				16DD39B8291AA4A600196687 /* Data.swift */,
-				16DD39A4291AA45000196687 /* AppDelegate.swift */,
-				16DD39A6291AA45000196687 /* SceneDelegate.swift */,
-				16DD39A8291AA45000196687 /* ViewController.swift */,
-				16DD39AA291AA45000196687 /* Main.storyboard */,
+				16015E4D291D23D200152F51 /* Models */,
+				16015E4C291D23D000152F51 /* Views */,
+				16015E4B291D23CD00152F51 /* Controllers */,
 				16DD39AD291AA45100196687 /* Assets.xcassets */,
 				16DD39AF291AA45100196687 /* LaunchScreen.storyboard */,
 				16DD39B2291AA45100196687 /* Info.plist */,
 				163CFCA1291AA684007AC2C9 /* TMapSDK.framework */,
-				1632932C291C9D1200B87743 /* MusicCell.swift */,
-				1632932D291C9D1200B87743 /* MusicCell.xib */,
 			);
 			path = amutta;
 			sourceTree = "<group>";
@@ -157,10 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F811E1291D243A00ABA4D6 /* MusicCell.xib in Resources */,
 				16DD39B1291AA45100196687 /* LaunchScreen.storyboard in Resources */,
 				16DD39AE291AA45100196687 /* Assets.xcassets in Resources */,
 				16DD39AC291AA45000196687 /* Main.storyboard in Resources */,
-				1632932F291C9D1200B87743 /* MusicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,12 +204,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				162135AE291BC59800B0454A /* NetworkGetData.swift in Sources */,
+				162135AE291BC59800B0454A /* NetworkManager.swift in Sources */,
 				16DD39A9291AA45000196687 /* ViewController.swift in Sources */,
 				16DD39A5291AA45000196687 /* AppDelegate.swift in Sources */,
 				16DD39A7291AA45000196687 /* SceneDelegate.swift in Sources */,
 				16DD39B9291AA4A600196687 /* Data.swift in Sources */,
+				16015E46291D21A400152F51 /* CollectionViewCell.swift in Sources */,
+				16015E48291D21EC00152F51 /* SearchResultViewController.swift in Sources */,
 				1632932E291C9D1200B87743 /* MusicCell.swift in Sources */,
+				16015E4A291D221A00152F51 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

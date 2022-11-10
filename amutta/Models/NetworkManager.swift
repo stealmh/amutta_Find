@@ -15,8 +15,8 @@ enum NetworkError: Error {
 
 
 
-class NetworkGetData {
-    static let shared = NetworkGetData()
+class NetworkManager {
+    static let shared = NetworkManager()
     private init() {}
     
     typealias NetworkCompletion = (Result<[Poi], NetworkError>) -> Void
