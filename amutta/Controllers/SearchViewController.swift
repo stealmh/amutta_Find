@@ -11,7 +11,7 @@ class SearchViewController: UIViewController {
 
     
     
-    let searchController = UISearchController(searchResultsController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController)
+    let searchController = UISearchController(searchResultsController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         print("서치바에 입력되는 단어", searchController.searchBar.text ?? "")
         // 글자를 치는 순간에 다른 화면을 보여주고 싶다면 (컬렉션뷰를 보여줌)
-        let vc = searchController.searchResultsController as! SearchResultViewController
+        let vc = searchController.searchResultsController as! SearchTableViewController
         // 컬렉션뷰에 찾으려는 단어 전달
         vc.searchTerm = searchController.searchBar.text ?? ""
     }
