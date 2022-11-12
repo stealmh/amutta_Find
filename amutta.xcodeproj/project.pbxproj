@@ -12,6 +12,7 @@
 		16015E4A291D221A00152F51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16015E49291D221A00152F51 /* Constants.swift */; };
 		162135AE291BC59800B0454A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162135AD291BC59800B0454A /* NetworkManager.swift */; };
 		1632932E291C9D1200B87743 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632932C291C9D1200B87743 /* MusicCell.swift */; };
+		167843EA291F6D7D00D49EA4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167843E9291F6D7D00D49EA4 /* SearchViewController.swift */; };
 		16AE0551291AA9C4003524D6 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163CFCA1291AA684007AC2C9 /* TMapSDK.framework */; };
 		16AE0552291AA9C4003524D6 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 163CFCA1291AA684007AC2C9 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16DD39A5291AA45000196687 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DD39A4291AA45000196687 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 		162135AD291BC59800B0454A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1632932C291C9D1200B87743 /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
 		163CFCA1291AA684007AC2C9 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
+		167843E9291F6D7D00D49EA4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		16DD39A1291AA45000196687 /* amutta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amutta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16DD39A4291AA45000196687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16DD39A6291AA45000196687 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				16DD39A8291AA45000196687 /* ViewController.swift */,
 				16015E47291D21EC00152F51 /* SearchResultViewController.swift */,
+				167843E9291F6D7D00D49EA4 /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167843EA291F6D7D00D49EA4 /* SearchViewController.swift in Sources */,
 				162135AE291BC59800B0454A /* NetworkManager.swift in Sources */,
 				16DD39A9291AA45000196687 /* ViewController.swift in Sources */,
 				16DD39A5291AA45000196687 /* AppDelegate.swift in Sources */,
