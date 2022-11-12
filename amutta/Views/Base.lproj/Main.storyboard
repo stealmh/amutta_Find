@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b1g-xh-VGH">
-                                <rect key="frame" x="0.0" y="59" width="393" height="246"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYa-3q-Fmr">
                                 <rect key="frame" x="159" y="408.66666666666669" width="75" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -35,17 +31,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JYa-3q-Fmr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="429-ks-Ac5"/>
-                            <constraint firstItem="b1g-xh-VGH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Dsi-QP-94j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b1g-xh-VGH" secondAttribute="bottom" constant="513" id="J0o-wb-nvC"/>
-                            <constraint firstItem="b1g-xh-VGH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VWz-gr-JhR"/>
-                            <constraint firstItem="b1g-xh-VGH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="j0Z-v8-YNa"/>
                             <constraint firstItem="JYa-3q-Fmr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pex-c7-6Xv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q1J-bC-6gq"/>
-                    <connections>
-                        <outlet property="tableView" destination="b1g-xh-VGH" id="MDM-ea-rCq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
