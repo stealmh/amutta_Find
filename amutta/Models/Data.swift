@@ -24,6 +24,8 @@ struct Pois: Codable {
 
 // MARK: - Poi
 struct Poi: Codable {
-    let name: String
+    let name: String //목적지의 이름
+    let frontLat: String //목적지의 위도
+    let frontLon: String // 목적지의 경도
 
 }

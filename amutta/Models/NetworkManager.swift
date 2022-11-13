@@ -21,7 +21,7 @@ class NetworkManager {
     
     typealias NetworkCompletion = (Result<[Poi], NetworkError>) -> Void
     
-    var dataArray = [String]()
+    var dataArray: [Poi] = []
 
     func makeStringKoreanEncoded(_ string: String) -> String {
                 return string.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? string
@@ -111,7 +111,7 @@ class NetworkManager {
                 if let json = try? decoder.decode(DataHere.self, from: data) {
                     DispatchQueue.main.async {
                         for i in json.searchPoiInfo.pois.poi {
-                            self.dataArray.append(i.name)
+                            self.dataArray.append(i)
                         }
                     }
 

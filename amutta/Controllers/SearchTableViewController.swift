@@ -61,6 +61,7 @@ final class SearchTableViewController: UIViewController {
                 // 컬렉션뷰를 리로드 (메인쓰레드에서)
                 DispatchQueue.main.async {
                     self.searchTableView.reloadData()
+                    print(self.musicArrays)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
