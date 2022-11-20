@@ -7,28 +7,75 @@
 
 import UIKit
 import TMapSDK
+import CoreLocation //사용자로부터 현재위치 받기 위함
 import Alamofire
 
 
-class ViewController: UIViewController,TMapViewDelegate {
+class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegate {
     
+    //CoreLocation
+    var locationManager = CLLocationManager()
+    var myLocationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
+    //
+
+    //TMAP
     @IBOutlet weak var mapContainerView: UIView!
     var mapView = TMapView()
     let apiKey: String = "l7xx9e936404d40843cd936cffd31172b0ef"
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad() 
         postBodyJsonRequest()
         setTMap()
+        setMyLocation()
     }
 
+    @IBAction func testTapped(_ sender: UIButton) {
+        
+        
+        setZoom()
+        
+    }
     func setTMap() {
         self.mapView = TMapView(frame: mapContainerView.frame)
         self.mapView.delegate = self
         self.mapView.setApiKey(apiKey)
         
         mapContainerView.addSubview(self.mapView)
-        
+    }
+    
+    func setMyLocation() {
+        //대리자 설정
+        locationManager.delegate = self
+        //거리 정확도
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //위치 사용 허용 알림
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        } else {
+            print("[Fail] 위치 서비스 off 상태")
+        }
+    }
+    
+    func setZoom() {
+        self.mapView.setCenter(myLocationCoordinate)
+        self.mapView.setZoom(15)
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("위치 업데이트!")
+            print("위도 : \(location.coordinate.latitude)")
+            print("경도 : \(location.coordinate.longitude)")
+            myLocationCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("[Fail] 위치 가져오기 실패")
     }
     
     
