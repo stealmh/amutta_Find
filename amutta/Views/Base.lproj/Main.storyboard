@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cH3-yd-BfO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Oal-8e-KdF">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892.3664122137404" y="-28.169014084507044"/>
+            <point key="canvasLocation" x="1862" y="-28"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="M1I-OL-Tvo">
@@ -88,10 +88,79 @@
                     <view key="view" contentMode="scaleToFill" id="Llb-34-qjW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="PzB-7Y-nOs">
+                                <rect key="frame" x="0.0" y="56" width="393" height="727"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-ha-L9g">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="242.33333333333334"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목적지:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgJ-hn-ovT">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCp-0F-xun">
+                                                <rect key="frame" x="96" y="0.0" width="7.6666666666666714" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="JM6-Yh-omW">
+                                        <rect key="frame" x="0.0" y="242.33333333333331" width="125" height="242.33333333333331"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CheckLat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="176-Xd-Rzg">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvp-GH-ILh">
+                                                <rect key="frame" x="115" y="0.0" width="10" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Xud-HC-kea">
+                                        <rect key="frame" x="0.0" y="484.66666666666657" width="114.33333333333333" height="242.33333333333331"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CheckLon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNn-s5-mVh">
+                                                <rect key="frame" x="0.0" y="0.0" width="81" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J02-ds-GHc">
+                                                <rect key="frame" x="104" y="0.0" width="10.333333333333329" height="242.33333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Zla-fa-YxJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zla-fa-YxJ" firstAttribute="bottom" secondItem="PzB-7Y-nOs" secondAttribute="bottom" id="KVi-dS-9Sw"/>
+                            <constraint firstItem="PzB-7Y-nOs" firstAttribute="top" secondItem="Zla-fa-YxJ" secondAttribute="top" id="YM0-Fb-JGX"/>
+                            <constraint firstItem="PzB-7Y-nOs" firstAttribute="leading" secondItem="Zla-fa-YxJ" secondAttribute="leading" id="fUZ-h6-SDV"/>
+                            <constraint firstItem="Zla-fa-YxJ" firstAttribute="trailing" secondItem="PzB-7Y-nOs" secondAttribute="trailing" id="yh5-2m-CAK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gQG-Px-MKq"/>
+                    <connections>
+                        <outlet property="CheckLonLabel" destination="J02-ds-GHc" id="rJs-eS-oS9"/>
+                        <outlet property="checkDestinationLabel" destination="UCp-0F-xun" id="uvK-01-Gez"/>
+                        <outlet property="checkLatLabel" destination="Nvp-GH-ILh" id="T6B-wT-moL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LbZ-VV-j0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

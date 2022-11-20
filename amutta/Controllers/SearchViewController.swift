@@ -7,12 +7,17 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
 
-    
-    
+
+class SearchViewController: UIViewController, UISearchControllerDelegate {
+
+    @IBOutlet weak var checkDestinationLabel: UILabel!
+    @IBOutlet weak var checkLatLabel: UILabel!
+    @IBOutlet weak var CheckLonLabel: UILabel!
     let searchController = UISearchController(searchResultsController: UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController)
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()

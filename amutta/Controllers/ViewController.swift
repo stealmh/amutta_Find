@@ -26,9 +26,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad() 
-        postBodyJsonRequest()
-        setTMap()
-        setMyLocation()
+//        postBodyJsonRequest()
+//        setTMap()
+//        setMyLocation()
     }
 
     @IBAction func testTapped(_ sender: UIButton) {

@@ -85,13 +85,19 @@ extension SearchTableViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let searchVC = SearchViewController()
+//        print("musicArrays[indexPath.row].name : \(musicArrays[indexPath.row].name)")
+//        searchVC.checkDestinationLabel.text = musicArrays[indexPath.row].name
+//
+//    }
 }
 
 extension SearchTableViewController: UITableViewDelegate {
     // 테이블뷰 셀의 높이를 유동적으로 조절하고 싶다면 구현할 수 있는 메서드
     // (musicTableView.rowHeight = 120 대신에 사용가능)
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 30
     }
 }
 
