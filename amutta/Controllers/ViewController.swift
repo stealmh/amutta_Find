@@ -10,13 +10,35 @@ import TMapSDK
 import Alamofire
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,TMapViewDelegate {
     
+    @IBOutlet weak var mapContainerView: UIView!
+    var mapView = TMapView()
+    let apiKey: String = "l7xx9e936404d40843cd936cffd31172b0ef"
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad() 
         postBodyJsonRequest()
+        setTMap()
     }
+
+    func setTMap() {
+        self.mapView = TMapView(frame: mapContainerView.frame)
+        self.mapView.delegate = self
+        self.mapView.setApiKey(apiKey)
+        
+        mapContainerView.addSubview(self.mapView)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     func postBodyJsonRequest(){
 

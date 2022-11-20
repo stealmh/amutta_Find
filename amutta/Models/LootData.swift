@@ -39,9 +39,10 @@ enum GeometryType {
 struct Properties {
     let totalDistance: Int? //총 거리
     let totalTime: Int? //총 걸리는 시간
-    let index: Int // 인덱스
-    let pointIndex: Int?
-    let name, propertiesDescription: String
+    let index: Int // 경로 순번
+    let pointIndex: Int? // 안내점 노드의 순번
+    let name: String // 안내지점의 명칭
+    let propertiesDescription: String
     let direction, nearPoiName, nearPoiX, nearPoiY: String?
     let facilityType, facilityName: String
     let turnType: Int?
