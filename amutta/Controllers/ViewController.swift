@@ -11,7 +11,15 @@ import CoreLocation //사용자로부터 현재위치 받기 위함
 import Alamofire
 
 
+
 class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegate {
+    
+    //서치바에서 넘어온 목적지,경도,위도 변수
+    var destination: String?
+    var getLat: String?
+    var getLon: String?
+    
+    
     
     //CoreLocation
     var locationManager = CLLocationManager()
@@ -25,10 +33,13 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     //
     
     override func viewDidLoad() {
-        super.viewDidLoad() 
-//        postBodyJsonRequest()
-//        setTMap()
-//        setMyLocation()
+        super.viewDidLoad()
+        print(destination)
+        print(getLat)
+        print(getLon)
+        postBodyJsonRequest()
+        setTMap()
+        setMyLocation()
     }
 
     @IBAction func testTapped(_ sender: UIButton) {

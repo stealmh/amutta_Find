@@ -15,25 +15,23 @@
 import UIKit
 
 final class SearchTableViewController: UIViewController {
-
+    
     @IBOutlet weak var searchTableView: UITableView!
     let networkManager = NetworkManager.shared
     var musicArrays: [Poi] = []
-    
+    var test: String = "hi!"
     var searchTerm: String? {
         didSet {
             setupDatas()
         }
     }
-    
-
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-//        setupDatas()
+        //        setupDatas()
     }
-    
+ 
     func setupTableView() {
         searchTableView.dataSource = self
         searchTableView.delegate = self
@@ -68,7 +66,7 @@ final class SearchTableViewController: UIViewController {
             }
         }
     }
-  
+    
 }
 
 extension SearchTableViewController: UITableViewDataSource {
@@ -85,12 +83,16 @@ extension SearchTableViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let searchVC = SearchViewController()
-//        print("musicArrays[indexPath.row].name : \(musicArrays[indexPath.row].name)")
-//        searchVC.checkDestinationLabel.text = musicArrays[indexPath.row].name
-//
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let result = storyboard?.instantiateViewController(withIdentifier: "resultVC") as? ViewController else{ return }
+        result.destination = musicArrays[indexPath.row].name
+        result.getLat = musicArrays[indexPath.row].frontLat
+        result.getLon = musicArrays[indexPath.row].frontLon
+        
+        present(result,animated:true,completion:nil)
+    }
+    
 }
 
 extension SearchTableViewController: UITableViewDelegate {
@@ -100,5 +102,3 @@ extension SearchTableViewController: UITableViewDelegate {
         return 30
     }
 }
-
-

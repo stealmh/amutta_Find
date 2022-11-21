@@ -10,6 +10,7 @@
 		16015E4A291D221A00152F51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16015E49291D221A00152F51 /* Constants.swift */; };
 		16181D072920B78600E9E784 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 16181D062920B78600E9E784 /* Alamofire */; };
 		16181D092920BAD500E9E784 /* LootData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16181D082920BAD500E9E784 /* LootData.swift */; };
+		161EEAC3292BBF7E00A0FFC8 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161EEAC2292BBF7E00A0FFC8 /* ResultViewController.swift */; };
 		162135AE291BC59800B0454A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162135AD291BC59800B0454A /* NetworkManager.swift */; };
 		1632932E291C9D1200B87743 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632932C291C9D1200B87743 /* MusicCell.swift */; };
 		167843EA291F6D7D00D49EA4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167843E9291F6D7D00D49EA4 /* SearchViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		16015E49291D221A00152F51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		16181D082920BAD500E9E784 /* LootData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootData.swift; sourceTree = "<group>"; };
+		161EEAC2292BBF7E00A0FFC8 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		162135AD291BC59800B0454A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1632932C291C9D1200B87743 /* MusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
 		163CFCA1291AA684007AC2C9 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				16DD39A8291AA45000196687 /* ViewController.swift */,
 				167843E9291F6D7D00D49EA4 /* SearchViewController.swift */,
 				167843EB291F757C00D49EA4 /* SearchTableViewController.swift */,
+				161EEAC2292BBF7E00A0FFC8 /* ResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				16181D092920BAD500E9E784 /* LootData.swift in Sources */,
 				1632932E291C9D1200B87743 /* MusicCell.swift in Sources */,
 				16015E4A291D221A00152F51 /* Constants.swift in Sources */,
+				161EEAC3292BBF7E00A0FFC8 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
