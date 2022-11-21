@@ -26,6 +26,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var locationManager = CLLocationManager()
     var myLocationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
     //
+    var destinationCoordiante: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
 
     //TMAP
     @IBOutlet weak var mapContainerView: UIView!
@@ -37,14 +38,20 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         print(destination)
         print(getLat)
         print(getLon)
+        destinationCoordiante = CLLocationCoordinate2D(latitude: CLLocationDegrees(getLat!)!, longitude: CLLocationDegrees(getLon!)!)
         postBodyJsonRequest()
         setTMap()
         setMyLocation()
     }
 
     @IBAction func testTapped(_ sender: UIButton) {
+        
+        //사용자의 현재위치로 이동
         setZoom()
-        setMark()
+        //사용자의 현재위치에 마커를 찍는다
+        setMark(myLocationCoordinate)
+        //사용자의 목적지에 마커를 찍는다
+        setMark(destinationCoordiante)
     }
     func setTMap() {
         self.mapView = TMapView(frame: mapContainerView.frame)
@@ -73,8 +80,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         self.mapView.setZoom(15)
     }
     // MARK: 마커 만들기
-    func setMark() {
-        let marker = TMapMarker(position: myLocationCoordinate)
+    func setMark(_ input: CLLocationCoordinate2D) {
+        let marker = TMapMarker(position: input)
         marker.title = "제목없음"
         marker.subTitle = "내용없음"
         marker.draggable = true
