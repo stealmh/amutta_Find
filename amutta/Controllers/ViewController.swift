@@ -19,7 +19,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var getLat: String?
     var getLon: String?
     
-    
+    //marker
+    var markers:Array<TMapMarker> = []
     
     //CoreLocation
     var locationManager = CLLocationManager()
@@ -30,7 +31,6 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     @IBOutlet weak var mapContainerView: UIView!
     var mapView = TMapView()
     let apiKey: String = "l7xx9e936404d40843cd936cffd31172b0ef"
-    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +43,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     }
 
     @IBAction func testTapped(_ sender: UIButton) {
-        
-        
         setZoom()
-        
+        setMark()
     }
     func setTMap() {
         self.mapView = TMapView(frame: mapContainerView.frame)
@@ -69,13 +67,29 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
             print("[Fail] 위치 서비스 off 상태")
         }
     }
-    
+    // MARK: 현재위치로 이동
     func setZoom() {
         self.mapView.setCenter(myLocationCoordinate)
         self.mapView.setZoom(15)
     }
+    // MARK: 마커 만들기
+    func setMark() {
+        let marker = TMapMarker(position: myLocationCoordinate)
+        marker.title = "제목없음"
+        marker.subTitle = "내용없음"
+        marker.draggable = true
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 50))
+        label.text = "좌측"
+        marker.leftCalloutView = label
+        let label2 = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 50))
+        label2.text = "우측"
+        marker.rightCalloutView = label2
+        
+        marker.map = self.mapView
+        self.markers.append(marker)
+    }
     
-    
+    //MARK: 현재위치 최신화
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             print("위치 업데이트!")
@@ -88,31 +102,23 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("[Fail] 위치 가져오기 실패")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
+    
+    
+    //MARK: Alamofire
     func postBodyJsonRequest(){
-
-            // [http 요청 주소 지정]
-            let url = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&callback=function"
+        // [http 요청 주소 지정]
+        let url = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&callback=function"
             
             
-            // [http 요청 헤더 지정]
-            let header : HTTPHeaders = [
-                "accept": "application/json",
-                "Content-Type" : "application/json",
-                "appKey": "l7xx846db5f3bc1e48d29b7275a745d501c8"
+        // [http 요청 헤더 지정]
+        let header : HTTPHeaders = [
+            "accept": "application/json",
+            "Content-Type" : "application/json",
+            "appKey": "l7xx846db5f3bc1e48d29b7275a745d501c8"
                 
             ]
-            
-            
+          
             // [http 요청 파라미터 지정 실시]
             let bodyData : Parameters = [
                   "startX": 126.92365493654832,
