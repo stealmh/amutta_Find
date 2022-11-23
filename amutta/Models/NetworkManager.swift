@@ -24,8 +24,8 @@ class NetworkManager {
     var dataArray: [Poi] = []
 
     func makeStringKoreanEncoded(_ string: String) -> String {
-                return string.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? string
-            }
+        return string.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? string
+    }
     
     
 //    func fetchMusic(searchTerm: String, completion: @escaping NetworkCompletion) {

@@ -51,7 +51,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         //사용자의 현재위치에 마커를 찍는다
         setMark(myLocationCoordinate)
         //사용자의 목적지에 마커를 찍는다
-        setMark(destinationCoordiante)
+//        setMark(destinationCoordiante)
     }
     func setTMap() {
         self.mapView = TMapView(frame: mapContainerView.frame)
@@ -128,8 +128,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
           
             // [http 요청 파라미터 지정 실시]
             let bodyData : Parameters = [
-                  "startX": 126.92365493654832,
-                  "startY": 37.556770374096615,
+                "startX": myLocationCoordinate.longitude,
+                "startY": myLocationCoordinate.latitude,
 //                  "angle": 20,
 //                  "speed": 30,
 //                  "endPoiId": "10001",
@@ -153,6 +153,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
             )
             .validate(statusCode: 200..<300)
             .responseData { response in
+                var routines: Welcome
                 switch response.result {
                 case .success(let res):
                     do {
@@ -163,13 +164,19 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                         print("-------------------------------")
                         print("응답 코드 :: ", response.response?.statusCode ?? 0)
                         print("-------------------------------")
-                        print("응답 데이터 :: ", String(data: res, encoding: .utf8) ?? "")
+//                        print("응답 데이터 :: ", String(data: res, encoding: .utf8) ?? "")
                         print("====================================")
                         print("")
+                        routines = try JSONDecoder().decode(Welcome.self, from: res)
+                        if case .double(let cord) = routines.features[0].geometry.coordinates[0] {
+                            print("answer: \(cord)")
+                        }
+
+
                         
                         // [비동기 작업 수행]
                         DispatchQueue.main.async {
-                            
+
                         }
                     }
                     catch (let err){
