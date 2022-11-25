@@ -38,26 +38,29 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     let apiKey: String = "l7xx9e936404d40843cd936cffd31172b0ef"
     
     override func viewDidLoad() {
+        print(#function)
         super.viewDidLoad()
-        print(destination)
-        print(getLat)
-        print(getLon)
+//        print(destination)
+//        print(getLat)
+//        print(getLon)
         destinationCoordiante = CLLocationCoordinate2D(latitude: CLLocationDegrees(getLat!)!, longitude: CLLocationDegrees(getLon!)!)
-        postBodyJsonRequest()
         setTMap()
         setMyLocation()
+//        postBodyJsonRequest()
     }
 
     @IBAction func testTapped(_ sender: UIButton) {
-        
+        print(#function)
         //사용자의 현재위치로 이동
         setZoom()
         //사용자의 현재위치에 마커를 찍는다
         setMark(myLocationCoordinate)
         //사용자의 목적지에 마커를 찍는다
-//        setMark(destinationCoordiante)
+        setMark(destinationCoordiante)
+        postBodyJsonRequest()
     }
     func setTMap() {
+        print(#function)
         self.mapView = TMapView(frame: mapContainerView.frame)
         self.mapView.delegate = self
         self.mapView.setApiKey(apiKey)
@@ -66,6 +69,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     }
     
     func setMyLocation() {
+        print(#function)
         //대리자 설정
         locationManager.delegate = self
         //거리 정확도
@@ -80,11 +84,13 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     }
     // MARK: 현재위치로 이동-
     func setZoom() {
+        print(#function)
         self.mapView.setCenter(myLocationCoordinate)
         self.mapView.setZoom(15)
     }
     // MARK: 마커 만들기-
     func setMark(_ input: CLLocationCoordinate2D) {
+        print(#function)
         let marker = TMapMarker(position: input)
         marker.title = "제목없음"
         marker.subTitle = "내용없음"
@@ -101,6 +107,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     }
     //MARK: 라인 추가
     func makeMapLine() {
+        print(#function)
         let position = self.mapView.getCenter()
         
         var path: [CLLocationCoordinate2D] = []
@@ -121,15 +128,17 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     
     //MARK: 현재위치 최신화
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(#function)
         if let location = locations.first {
-            print("위치 업데이트!")
-            print("위도 : \(location.coordinate.latitude)")
-            print("경도 : \(location.coordinate.longitude)")
+//            print("위치 업데이트!")
+//            print("위도 : \(location.coordinate.latitude)")
+//            print("경도 : \(location.coordinate.longitude)")
             myLocationCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(#function)
         print("[Fail] 위치 가져오기 실패")
     }
 
@@ -137,6 +146,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     
     //MARK: Alamofire
     func postBodyJsonRequest(){
+        print(#function)
         // [http 요청 주소 지정]
         let url = "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&callback=function"
             
@@ -149,6 +159,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                 
             ]
           
+        print(myLocationCoordinate.latitude)
+        print(myLocationCoordinate.longitude)
             // [http 요청 파라미터 지정 실시]
             let bodyData : Parameters = [
                 "startX": myLocationCoordinate.longitude,
@@ -159,8 +171,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                   "endX": Double(getLon!)!,
                   "endY": Double(getLat!)!,
 //                  "reqCoordType": "WGS84GEO", 기본값이라 일단 주석
-                  "startName": "%EC%B6%9C%EB%B0%9C",
-                  "endName": "%EB%8F%84%EC%B0%A9",
+                  "startName": "%EC%88%98%EC%9B%90%EC%97%AD",
+                  "endName": "%EB%A7%9D%ED%8F%AC%EC%97%AD",
                   "searchOption": "0",
 //                  "resCoordType": "WGS84GEO", 기본값이라 일단 주석
                   "sort": "custom"
@@ -180,15 +192,15 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                 case .success(let res):
                     do {
                         
-                        print("")
-                        print("====================================")
+//                        print("")
+//                        print("====================================")
 //                        print("[\(self.ACTIVITY_NAME) >> postBodyJsonRequest() :: Post Body Json 방식 http 응답 확인]")
-                        print("-------------------------------")
-                        print("응답 코드 :: ", response.response?.statusCode ?? 0)
-                        print("-------------------------------")
+//                        print("-------------------------------")
+//                        print("응답 코드 :: ", response.response?.statusCode ?? 0)
+//                        print("-------------------------------")
 //                        print("응답 데이터 :: ", String(data: res, encoding: .utf8) ?? "")
-                        print("====================================")
-                        print("")
+//                        print("====================================")
+//                        print("")
 
                     
                         routines = try JSONDecoder().decode(Welcome.self, from: res)
@@ -230,7 +242,6 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                                 }
                             }
                             self.makeMapLine()
-                            
                         }
                         
                     }
