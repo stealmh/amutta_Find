@@ -19,8 +19,12 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var getLat: String?
     var getLon: String?
     
+    //LoadArray를 만들어 일단 라인 그려보기 체크
+    var loadArray: [[Double]] = []
+    
     //marker
     var markers:Array<TMapMarker> = []
+    var polylines:Array<TMapPolyline> = []
     
     //CoreLocation
     var locationManager = CLLocationManager()
@@ -74,12 +78,12 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
             print("[Fail] 위치 서비스 off 상태")
         }
     }
-    // MARK: 현재위치로 이동
+    // MARK: 현재위치로 이동-
     func setZoom() {
         self.mapView.setCenter(myLocationCoordinate)
         self.mapView.setZoom(15)
     }
-    // MARK: 마커 만들기
+    // MARK: 마커 만들기-
     func setMark(_ input: CLLocationCoordinate2D) {
         let marker = TMapMarker(position: input)
         marker.title = "제목없음"
@@ -95,6 +99,25 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         marker.map = self.mapView
         self.markers.append(marker)
     }
+    //MARK: 라인 추가
+    func makeMapLine() {
+        let position = self.mapView.getCenter()
+        
+        var path: [CLLocationCoordinate2D] = []
+        for i in loadArray {
+            path.append(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
+        }
+
+        let polyline = TMapPolyline(coordinates: path)
+        polyline.strokeWidth = 4
+        polyline.strokeColor = .red
+        polyline.map = self.mapView
+        self.polylines.append(polyline)
+        
+    }
+    
+    
+    
     
     //MARK: 현재위치 최신화
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -133,15 +156,14 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
 //                  "angle": 20,
 //                  "speed": 30,
 //                  "endPoiId": "10001",
-                  "endX": 126.92432158129688,
-                  "endY": 37.55279861528311,
-                  "passList": "126.92774822,37.55395475_126.92577620,37.55337145",
-                  "reqCoordType": "WGS84GEO",
+                  "endX": Double(getLon!)!,
+                  "endY": Double(getLat!)!,
+//                  "reqCoordType": "WGS84GEO", 기본값이라 일단 주석
                   "startName": "%EC%B6%9C%EB%B0%9C",
                   "endName": "%EB%8F%84%EC%B0%A9",
                   "searchOption": "0",
-                  "resCoordType": "WGS84GEO",
-                  "sort": "index"
+//                  "resCoordType": "WGS84GEO", 기본값이라 일단 주석
+                  "sort": "custom"
             ]
             
             AF.request(
@@ -167,17 +189,50 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
 //                        print("응답 데이터 :: ", String(data: res, encoding: .utf8) ?? "")
                         print("====================================")
                         print("")
+
+                    
                         routines = try JSONDecoder().decode(Welcome.self, from: res)
-                        if case .double(let cord) = routines.features[0].geometry.coordinates[0] {
-                            print("answer: \(cord)")
-                        }
+//                        print(routines.features[0].geometry.coordinates)
+//                        if case .double(let cord) = routines.features[0].geometry.coordinates[0] {
+//                            print("answer: \(cord)")
+//                        }
 
 
                         
                         // [비동기 작업 수행]
-                        DispatchQueue.main.async {
+//                        DispatchQueue.global().async {
+//                            if routines.features[0].geometry.type.rawValue == "LineString" {
+//                                for i in routines.features[0].geometry.coordinates {
+//                                    print("answer: \(i)") // i찍히는거 확인
+//                                    if case .doubleArray(let array) = i {
+//                                        print("\(array)")
+//                                        self.loadArray.append(array)
+//                                    }
+//
+//                                }
+//                                print(self.loadArray)
+//                            } else {
+//                                print("type: Point")
+//                                print(routines.features[0].geometry.coordinates)
+//                            }
+//                            self.makeMapLine()
+//                        }
+                        DispatchQueue.global().async {
+                            for i in routines.features {
+                                if i.geometry.type.rawValue == "LineString" {
+                                    for j in i.geometry.coordinates {
+                                        if case .doubleArray(let array) = j{
+                                            print(array) // 찍히는것 확인
+                                            self.loadArray.append(array)
+                                    }
 
+                                    }
+                                }
+                            }
+                            self.makeMapLine()
+                            
                         }
+                        
                     }
                     catch (let err){
                         print("catch :: ", err.localizedDescription)
