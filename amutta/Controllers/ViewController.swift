@@ -20,7 +20,13 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var getLon: String?
     
     //LoadArray를 만들어 일단 라인 그려보기 체크
+    
+    //type: LineString
     var loadArray: [[Double]] = []
+    //type: Point
+    var loadArrayPoint: [[Double]] = []
+    
+    var testArray: [Double] = []
     
     //marker
     var markers:Array<TMapMarker> = []
@@ -31,6 +37,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var myLocationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
     //
     var destinationCoordiante: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
+    
+    //안내문구를 담아놓은 배열
+    var turnByturn: [[String]] = []
 
     //TMAP
     @IBOutlet weak var mapContainerView: UIView!
@@ -106,7 +115,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         self.markers.append(marker)
     }
     //MARK: 라인 추가
-    func makeMapLine() {
+    func makeMapLineToLineString() {
         print(#function)
         let position = self.mapView.getCenter()
         
@@ -120,7 +129,21 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         polyline.strokeColor = .red
         polyline.map = self.mapView
         self.polylines.append(polyline)
+    }
+    func makeMapLineToPoint() {
+        print(#function)
+        let position = self.mapView.getCenter()
         
+        var path: [CLLocationCoordinate2D] = []
+        for i in loadArrayPoint {
+            path.append(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
+        }
+
+        let polyline = TMapPolyline(coordinates: path)
+        polyline.strokeWidth = 4
+        polyline.strokeColor = .red
+        polyline.map = self.mapView
+        self.polylines.append(polyline)
     }
     
     
@@ -175,7 +198,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                   "endName": "%EB%A7%9D%ED%8F%AC%EC%97%AD",
                   "searchOption": "0",
 //                  "resCoordType": "WGS84GEO", 기본값이라 일단 주석
-                  "sort": "custom"
+                  "sort": "index"
             ]
             
             AF.request(
@@ -212,36 +235,42 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
 
                         
                         // [비동기 작업 수행]
-//                        DispatchQueue.global().async {
-//                            if routines.features[0].geometry.type.rawValue == "LineString" {
-//                                for i in routines.features[0].geometry.coordinates {
-//                                    print("answer: \(i)") // i찍히는거 확인
-//                                    if case .doubleArray(let array) = i {
-//                                        print("\(array)")
-//                                        self.loadArray.append(array)
-//                                    }
-//
-//                                }
-//                                print(self.loadArray)
-//                            } else {
-//                                print("type: Point")
-//                                print(routines.features[0].geometry.coordinates)
-//                            }
-//                            self.makeMapLine()
-//                        }
                         DispatchQueue.global().async {
                             for i in routines.features {
+                                
+                                //type이 LineString일때
                                 if i.geometry.type.rawValue == "LineString" {
                                     for j in i.geometry.coordinates {
                                         if case .doubleArray(let array) = j{
-                                            print(array) // 찍히는것 확인
+//                                            print(array) // 찍히는것 확인
                                             self.loadArray.append(array)
                                     }
 
                                     }
                                 }
+                                //type이 Point일때
+                                else {
+                                    //안내문구를 담아줌/ turnType은 값이 없는 경우도 JSON에 있기에 없다면 0 넣어주었음
+                                    self.turnByturn.append([i.properties.propertiesDescription,String(i.properties.turnType ?? 0)])
+                                    for j in i.geometry.coordinates {
+                                        if self.testArray.count == 2 {
+                                            self.loadArrayPoint.append(self.testArray)
+                                            self.testArray = []
+                                        }
+                                        if case .double(let array) = j {
+                                            self.testArray.append(array)
+                                        }
+                                        
+                                    }
+
+                                }
                             }
-                            self.makeMapLine()
+                            print("loadArrayPointCount :",self.loadArrayPoint.count)
+                            print("turnByTurnCount: ",self.turnByturn.count)
+                            print(self.loadArrayPoint)
+                            print(self.turnByturn)
+//                            self.makeMapLineToLineString()
+                            self.makeMapLineToPoint()
                         }
                         
                     }
