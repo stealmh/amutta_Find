@@ -19,6 +19,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var getLat: String?
     var getLon: String?
     
+    @IBOutlet weak var turnByturnLabel: UILabel!
     //LoadArray를 만들어 일단 라인 그려보기 체크
     
     //type: LineString
@@ -27,6 +28,8 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var loadArrayPoint: [[Double]] = []
     
     var testArray: [Double] = []
+    
+    var stepCounter = 0
     
     //marker
     var markers:Array<TMapMarker> = []
@@ -115,7 +118,15 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         print(markers.count)
         self.markers.append(marker)
     }
-
+    
+    func testMarker(_ input: [[Double]]) {
+        print(#function)
+        for i in input {
+            print("print i:\(i)")
+            setMark(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
+        }
+        print(markers.count)
+    }
     
     
     //MARK: 라인 추가
@@ -162,7 +173,16 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
 //            print("경도 : \(location.coordinate.longitude)")
             myLocationCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
+        if turnByturn.count > 0 {
+            turnByturnLabel.text = turnByturn[stepCounter][0]
+            var testValue = CLLocationCoordinate2D(latitude: loadArrayPoint[stepCounter][1], longitude: loadArrayPoint[stepCounter][0])
+            if (abs(testValue.latitude - myLocationCoordinate.latitude) > 0.000110) &&
+                (abs(testValue.longitude - myLocationCoordinate.longitude) > 0.00022) {
+                stepCounter += 1
+            }
+        }   
     }
+
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
