@@ -112,8 +112,12 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         marker.rightCalloutView = label2
         
         marker.map = self.mapView
+        print(markers.count)
         self.markers.append(marker)
     }
+
+    
+    
     //MARK: 라인 추가
     func makeMapLineToLineString() {
         print(#function)
@@ -271,6 +275,11 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                             print(self.turnByturn)
 //                            self.makeMapLineToLineString()
                             self.makeMapLineToPoint()
+                        }
+                        DispatchQueue.main.async {
+                            for i in self.loadArrayPoint {
+                                self.setMark(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
+                            }
                         }
                         
                     }
