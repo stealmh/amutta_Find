@@ -18,6 +18,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var destination: String?
     var getLat: String?
     var getLon: String?
+    var turnCount: Int = 1
+    
+    var locationCount = 0
     
     @IBOutlet weak var turnByturnLabel: UILabel!
     //LoadArray를 만들어 일단 라인 그려보기 체크
@@ -35,6 +38,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var markers:Array<TMapMarker> = []
     var polylines:Array<TMapPolyline> = []
     
+    //circle
+    var circles:Array<TMapCircle> = []
+    
     //CoreLocation
     var locationManager = CLLocationManager()
     var myLocationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.255776, longitude: 127.106359)
@@ -47,7 +53,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     //TMAP
     @IBOutlet weak var mapContainerView: UIView!
     var mapView = TMapView()
-    let apiKey: String = "l7xx9e936404d40843cd936cffd31172b0ef"
+    let apiKey: String = "l7xx8749f7a7b24c491682f94ec946029847"
     
     override func viewDidLoad() {
         print(#function)
@@ -66,11 +72,12 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         //사용자의 현재위치로 이동
         setZoom()
         //사용자의 현재위치에 마커를 찍는다
-        setMark(myLocationCoordinate)
+//        setMark(myLocationCoordinate)
         //사용자의 목적지에 마커를 찍는다
-        setMark(destinationCoordiante)
+//        setMark(destinationCoordiante)
         postBodyJsonRequest()
     }
+ 
     func setTMap() {
         print(#function)
         self.mapView = TMapView(frame: mapContainerView.frame)
@@ -88,11 +95,14 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         //위치 사용 허용 알림
         locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        } else {
-            print("[Fail] 위치 서비스 off 상태")
+        Task {
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.startUpdatingLocation()
+            } else {
+                print("[Fail] 위치 서비스 off 상태")
+            }
         }
+
     }
     // MARK: 현재위치로 이동-
     func setZoom() {
@@ -102,7 +112,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     }
     // MARK: 마커 만들기-
     func setMark(_ input: CLLocationCoordinate2D) {
-        print(#function)
+//        print(#function)
         let marker = TMapMarker(position: input)
         marker.title = "제목없음"
         marker.subTitle = "내용없음"
@@ -115,17 +125,18 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         marker.rightCalloutView = label2
         
         marker.map = self.mapView
-        print(markers.count)
+//        print(markers.count)
         self.markers.append(marker)
     }
     
-    func testMarker(_ input: [[Double]]) {
-        print(#function)
-        for i in input {
-            print("print i:\(i)")
-            setMark(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
-        }
-        print(markers.count)
+    public func objFunc11(_ input: CLLocationCoordinate2D) {
+        let position = CLLocationCoordinate2D(latitude: input.latitude, longitude: input.longitude)
+        let circle = TMapCircle(position: position, radius: 10)
+            circle.fillColor = .cyan
+            circle.strokeColor = .red
+            circle.opacity = 0.5
+            circle.map = self.mapView
+            self.circles.append(circle)
     }
     
     
@@ -144,6 +155,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         polyline.strokeColor = .red
         polyline.map = self.mapView
         self.polylines.append(polyline)
+        
     }
     func makeMapLineToPoint() {
         print(#function)
@@ -173,14 +185,30 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
 //            print("경도 : \(location.coordinate.longitude)")
             myLocationCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
-        if turnByturn.count > 0 {
-            turnByturnLabel.text = turnByturn[stepCounter][0]
-            var testValue = CLLocationCoordinate2D(latitude: loadArrayPoint[stepCounter][1], longitude: loadArrayPoint[stepCounter][0])
-            if (abs(testValue.latitude - myLocationCoordinate.latitude) > 0.000110) &&
-                (abs(testValue.longitude - myLocationCoordinate.longitude) > 0.00022) {
-                stepCounter += 1
+        //1.원의 반지름
+        //2.다음 마커까지의 path길이
+        // 길이보다 반지름이 길어지는 순간은 -> 원에 진입했다는 뜻
+        
+
+        if loadArrayPoint.count > 2 {
+            
+            let coordinate = CLLocationCoordinate2D(latitude: loadArrayPoint[locationCount][1], longitude: loadArrayPoint[locationCount][0])
+            let from = CLLocationCoordinate2D(latitude: loadArrayPoint[locationCount][1], longitude: loadArrayPoint[locationCount][0])
+            let distance = coordinate.distance(from: from)
+            if distance <= 10 {
+                locationCount += 1
+                turnCount += 1
+                print(distance)
+                DispatchQueue.main.async {
+                    self.turnByturnLabel.text = self.turnByturn[self.turnCount][0]
+                }
             }
-        }   
+        }
+//        loadArrayPoint.removeFirst()
+//            let coordinate = CLLocationCoordinate2D(latitude: polylines[i].path[i].latitude, longitude: polylines[i].path[i].latitude)
+//            let from = CLLocationCoordinate2D(latitude: polylines[i].path[i+1].latitude, longitude: polylines[i+1].path[i+1].latitude)
+//            let distance = coordinate.distance(from: from)
+ 
     }
 
     
@@ -202,12 +230,12 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         let header : HTTPHeaders = [
             "accept": "application/json",
             "Content-Type" : "application/json",
-            "appKey": "l7xx846db5f3bc1e48d29b7275a745d501c8"
+            "appKey": "l7xx8749f7a7b24c491682f94ec946029847"
                 
             ]
           
-        print(myLocationCoordinate.latitude)
-        print(myLocationCoordinate.longitude)
+//        print(myLocationCoordinate.latitude)
+//        print(myLocationCoordinate.longitude)
             // [http 요청 파라미터 지정 실시]
             let bodyData : Parameters = [
                 "startX": myLocationCoordinate.longitude,
@@ -276,6 +304,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                                 else {
                                     //안내문구를 담아줌/ turnType은 값이 없는 경우도 JSON에 있기에 없다면 0 넣어주었음
                                     self.turnByturn.append([i.properties.propertiesDescription,String(i.properties.turnType ?? 0)])
+                                    DispatchQueue.main.async {
+                                        self.turnByturnLabel.text = self.turnByturn[0][0]
+                                    }
                                     for j in i.geometry.coordinates {
                                         if self.testArray.count == 2 {
                                             self.loadArrayPoint.append(self.testArray)
@@ -299,6 +330,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                         DispatchQueue.main.async {
                             for i in self.loadArrayPoint {
                                 self.setMark(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
+                                self.objFunc11(CLLocationCoordinate2D(latitude: i[1], longitude: i[0]))
                             }
                         }
                         
@@ -315,4 +347,15 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
             }
         }
     
+}
+
+extension CLLocationCoordinate2D {
+    /// Returns distance from coordianate in meters.
+    /// - Parameter from: coordinate which will be used as end point.
+    /// - Returns: Returns distance in meters.
+    func distance(from: CLLocationCoordinate2D) -> CLLocationDistance {
+        let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let to = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        return from.distance(from: to)
+    }
 }

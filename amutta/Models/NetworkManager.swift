@@ -54,7 +54,7 @@ class NetworkManager {
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest.init(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("l7xx9e936404d40843cd936cffd31172b0ef", forHTTPHeaderField: "appKey")
+        request.addValue("l7xx8749f7a7b24c491682f94ec946029847", forHTTPHeaderField: "appKey")
         request.httpMethod = "GET"
         
         let session = URLSession(configuration: .default)
@@ -95,31 +95,31 @@ class NetworkManager {
         }
     }
     
-    func getData(input: String) {
-        if let url = URL(string: "https://apis.openapi.sk.com/tmap/pois?version=1&searchKeyword=\(input)&searchType=all&searchtypCd=A&reqCoordType=WGS84GEO&resCoordType=WGS84GEO&page=1&count=20&multiPoint=Y&poiGroupYn=N"){
-            
-            var request = URLRequest.init(url: url)
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue("l7xx9e936404d40843cd936cffd31172b0ef", forHTTPHeaderField: "appKey")
-            request.httpMethod = "GET"
-            
-            URLSession.shared.dataTask(with: request){ (data, response, error) in
-                
-                guard let data = data else { return }
-                
-                let decoder = JSONDecoder()
-                if let json = try? decoder.decode(DataHere.self, from: data) {
-                    DispatchQueue.main.async {
-                        for i in json.searchPoiInfo.pois.poi {
-                            self.dataArray.append(i)
-                        }
-                    }
-
-                }
-                
-            }.resume()
-        }
-    }
+//    func getData(input: String) {
+//        if let url = URL(string: "https://apis.openapi.sk.com/tmap/pois?version=1&searchKeyword=\(input)&searchType=all&searchtypCd=A&reqCoordType=WGS84GEO&resCoordType=WGS84GEO&page=1&count=20&multiPoint=Y&poiGroupYn=N"){
+//            
+//            var request = URLRequest.init(url: url)
+//            request.addValue("application/json", forHTTPHeaderField: "Accept")
+//            request.addValue("l7xx8749f7a7b24c491682f94ec946029847", forHTTPHeaderField: "appKey")
+//            request.httpMethod = "GET"
+//            
+//            URLSession.shared.dataTask(with: request){ (data, response, error) in
+//                
+//                guard let data = data else { return }
+//                
+//                let decoder = JSONDecoder()
+//                if let json = try? decoder.decode(DataHere.self, from: data) {
+//                    DispatchQueue.main.async {
+//                        for i in json.searchPoiInfo.pois.poi {
+//                            self.dataArray.append(i)
+//                        }
+//                    }
+//
+//                }
+//                
+//            }.resume()
+//        }
+//    }
     
     
     

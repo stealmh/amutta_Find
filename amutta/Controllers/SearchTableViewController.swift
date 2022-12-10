@@ -78,7 +78,9 @@ extension SearchTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCell", for: indexPath) as! MusicCell
         
-        cell.nameLabel.text = musicArrays[indexPath.row].name
+        if musicArrays.count > 0 {
+            cell.nameLabel.text = musicArrays[indexPath.row].name
+        }
         
         cell.selectionStyle = .none
         return cell
