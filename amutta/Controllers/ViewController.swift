@@ -18,7 +18,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var destination: String?
     var getLat: String?
     var getLon: String?
-    var turnCount: Int = 1
+    var turnCount: Int = 0
     
     var locationCount = 0
     
@@ -193,12 +193,13 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         if loadArrayPoint.count > 2 {
             
             let coordinate = CLLocationCoordinate2D(latitude: loadArrayPoint[locationCount][1], longitude: loadArrayPoint[locationCount][0])
-            let from = CLLocationCoordinate2D(latitude: loadArrayPoint[locationCount][1], longitude: loadArrayPoint[locationCount][0])
+            let from = CLLocationCoordinate2D(latitude: loadArrayPoint[locationCount+1][1], longitude: loadArrayPoint[locationCount+1][0])
             let distance = coordinate.distance(from: from)
+            print("남은거리 \(distance)m")
             if distance <= 10 {
                 locationCount += 1
                 turnCount += 1
-                print(distance)
+                print("거리:",distance)
                 DispatchQueue.main.async {
                     self.turnByturnLabel.text = self.turnByturn[self.turnCount][0]
                 }
@@ -304,9 +305,6 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                                 else {
                                     //안내문구를 담아줌/ turnType은 값이 없는 경우도 JSON에 있기에 없다면 0 넣어주었음
                                     self.turnByturn.append([i.properties.propertiesDescription,String(i.properties.turnType ?? 0)])
-                                    DispatchQueue.main.async {
-                                        self.turnByturnLabel.text = self.turnByturn[0][0]
-                                    }
                                     for j in i.geometry.coordinates {
                                         if self.testArray.count == 2 {
                                             self.loadArrayPoint.append(self.testArray)
@@ -324,6 +322,9 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
                             print("turnByTurnCount: ",self.turnByturn.count)
                             print(self.loadArrayPoint)
                             print(self.turnByturn)
+                            DispatchQueue.main.async {
+                                self.turnByturnLabel.text = self.turnByturn[0][0]
+                            }
 //                            self.makeMapLineToLineString()
                             self.makeMapLineToPoint()
                         }
