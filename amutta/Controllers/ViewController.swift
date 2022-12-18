@@ -19,7 +19,6 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
     var getLat: String?
     var getLon: String?
     var turnCount: Int = 0
-    
     var locationCount = 0
     
     @IBOutlet weak var turnByturnLabel: UILabel!
@@ -83,6 +82,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         self.mapView = TMapView(frame: mapContainerView.frame)
         self.mapView.delegate = self
         self.mapView.setApiKey(apiKey)
+        self.mapView.trackingMode = .follow
         
         mapContainerView.addSubview(self.mapView)
     }
@@ -98,6 +98,7 @@ class ViewController: UIViewController,TMapViewDelegate,CLLocationManagerDelegat
         Task {
             if CLLocationManager.locationServicesEnabled() {
                 locationManager.startUpdatingLocation()
+
             } else {
                 print("[Fail] 위치 서비스 off 상태")
             }
