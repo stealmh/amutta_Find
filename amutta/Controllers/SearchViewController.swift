@@ -26,7 +26,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate {
     
     
     func setupSearchBar() {
-        self.title = "Music Search"
+        self.title = "목적지 검색"
         navigationItem.searchController = searchController
         // 🍎 2) 서치(결과)컨트롤러의 사용 (복잡한 구현 가능)
         //     ==> 글자마다 검색 기능 + 새로운 화면을 보여주는 것도 가능

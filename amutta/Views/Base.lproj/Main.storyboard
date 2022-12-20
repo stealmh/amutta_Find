@@ -21,14 +21,6 @@
                                 <rect key="frame" x="0.0" y="99" width="393" height="679"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGw-9B-uZo">
-                                <rect key="frame" x="159" y="786" width="75" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="testTapped:" destination="cH3-yd-BfO" eventType="touchUpInside" id="2I3-4g-QVH"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안내를 시작합니다!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gej-dK-feH">
                                 <rect key="frame" x="133" y="59" width="127" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -39,15 +31,12 @@
                         <viewLayoutGuide key="safeArea" id="isN-q9-GEY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="isN-q9-GEY" firstAttribute="trailing" secondItem="YGw-9B-uZo" secondAttribute="trailing" constant="159" id="9FJ-tM-26v"/>
                             <constraint firstItem="gej-dK-feH" firstAttribute="centerX" secondItem="TxO-FC-EmE" secondAttribute="centerX" id="Cwa-wt-6fz"/>
                             <constraint firstItem="7Ki-jc-W7Z" firstAttribute="leading" secondItem="isN-q9-GEY" secondAttribute="leading" id="O65-JJ-CQk"/>
-                            <constraint firstAttribute="bottom" secondItem="YGw-9B-uZo" secondAttribute="bottom" constant="31" id="SIX-kk-L6P"/>
                             <constraint firstItem="isN-q9-GEY" firstAttribute="bottom" secondItem="7Ki-jc-W7Z" secondAttribute="bottom" constant="40" id="dOM-di-yyX"/>
                             <constraint firstItem="isN-q9-GEY" firstAttribute="trailing" secondItem="7Ki-jc-W7Z" secondAttribute="trailing" id="fpm-xS-CtG"/>
                             <constraint firstItem="gej-dK-feH" firstAttribute="top" secondItem="isN-q9-GEY" secondAttribute="top" id="hOA-58-b9O"/>
                             <constraint firstItem="7Ki-jc-W7Z" firstAttribute="top" secondItem="isN-q9-GEY" secondAttribute="top" constant="40" id="vdd-b4-dPF"/>
-                            <constraint firstItem="YGw-9B-uZo" firstAttribute="leading" secondItem="isN-q9-GEY" secondAttribute="leading" constant="159" id="zcP-vz-itd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6X2-Gi-YYp"/>

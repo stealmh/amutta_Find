@@ -60,15 +60,8 @@ class ViewController: UIViewController {
         destinationCoordiante = CLLocationCoordinate2D(latitude: CLLocationDegrees(getLat!)!, longitude: CLLocationDegrees(getLon!)!)
         setTMap()
         setMyLocation()
-//        postBodyJsonRequest()
     }
 
-    @IBAction func testTapped(_ sender: UIButton) {
-        print(#function)
-        //사용자의 현재위치로 이동
-        setZoom()
-        postBodyJsonRequest()
-    }
    //MARK: Alamofire
     func postBodyJsonRequest(){
         print(#function)
@@ -188,6 +181,7 @@ extension ViewController: TMapViewDelegate {
         self.mapView.setApiKey(apiKey)
         self.mapView.trackingMode = .follow
         
+
         mapContainerView.addSubview(self.mapView)
     }
     //현재위치로 이동
@@ -257,6 +251,10 @@ extension ViewController: TMapViewDelegate {
         polyline.strokeColor = .red
         polyline.map = self.mapView
         self.polylines.append(polyline)
+    }
+    func mapViewDidFinishLoadingMap() {
+        setZoom()
+        postBodyJsonRequest()
     }
 }
 //MARK: - CLLocationManagerDelegate
